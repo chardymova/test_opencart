@@ -17,7 +17,7 @@ class BasicPage:
         elif 'css' in selector.keys():
             by = By.CSS_SELECTOR
             selector = selector['css']
-        return self.driver.find_elements(by, selector)[1:]
+        return self.driver.find_elements(by, selector)[index]
 
     def _click_on_element(self, selector, index=1):
         return self.__element(selector=selector, index=index).click()
