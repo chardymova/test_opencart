@@ -1,20 +1,13 @@
-from selenium.webdriver.common.by import By
-import time
 from page_objects.MainPage import MainPage
-from locators.MainPage import MainPageLoc
-from locators.common.Common import Search
+from page_objects.CartPage import CartPage
+from page_objects.ProductPage import ProductPage
+from page_objects.Common import Cart
 
 
-def test_one(driver, address_param):
+def test_add_to_cart(driver, address_param):
     driver.get(address_param)
-
-    time.sleep(2)
-    MainPage(driver).click_first_item(MainPageLoc.product, 2)
-
-
-    # print(Search.input_field['css'])
-    # print(MainPage.get_element_text('header h1'))
-    # driver.find_element(By.CSS_SELECTOR, Search.input_field['css']).send_keys('1')
-    #
-    # driver.find_element(By.CSS_SELECTOR, Search.search_button['css']).click()
-    time.sleep(2)
+    MainPage(driver).click_item(id=1)
+    name_product_page = ProductPage(driver).add_to_cart().get_product_name()
+    Cart(driver).click_cart_button().click_view_cart()
+    name_cart_page = CartPage(driver).get_last_added_product_name()
+    assert name_product_page == name_cart_page

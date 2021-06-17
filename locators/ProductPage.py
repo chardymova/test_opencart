@@ -3,6 +3,8 @@ class ProductPageLoc:
         main_photo = {'css': 'ul.thumbnails > li:nth-child(1)'}
         additional_photos = {'css': 'ul.thumbnails > li:not(:nth-child(1))'}
 
+    class Text:
+        product_name = {'css': 'div#product-product div[class="col-sm-4"] h1'}
 
     class Actions:
         add_to_wl = {'css': 'i.fa-heart'}
